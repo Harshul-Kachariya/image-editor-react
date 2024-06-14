@@ -59,8 +59,12 @@ const App = () => {
         onChange={handleImageUpload}
         className="mb-4"
       />
-      <div className="relative flex flex-col gap-1">
-        <div className="mb-4 absolute right-0">
+      <div className="relative flex gap-1">
+        <div
+          className={`mb-4 flex gap-2 absolute top-5 right-0 ${
+            editImage ? "block" : "hidden"
+          }`}
+        >
           <button
             onClick={showMarkerArea}
             className="mix-blend-multiply text-2xl font-bold "
@@ -74,6 +78,8 @@ const App = () => {
             <AiOutlineRadiusBottomleft />
           </button>
         </div>
+      </div>
+      <div>
         <img
           ref={imgRef}
           src={editImage}
