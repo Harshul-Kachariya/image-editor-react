@@ -3,7 +3,7 @@ import "./App.css";
 import * as markerjs2 from "markerjs2";
 import * as cropro from "cropro";
 import { AiOutlineForm } from "react-icons/ai";
-import { AiOutlineRadiusBottomleft } from "react-icons/ai";
+import { AiOutlineDownload } from "react-icons/ai";
 import { MdOutlineCropRotate } from "react-icons/md";
 
 const App = () => {
@@ -51,6 +51,15 @@ const App = () => {
     }
   };
 
+  const handleDownload = () => {
+    if (imgRef.current) {
+      const link = document.createElement("a");
+      link.download = "editedImage.png";
+      link.href = imgRef.current.src;
+      link.click();
+    }
+  };
+
   return (
     <div className="App px-6 justify-center items-center flex flex-col gap-5 w-screen h-screen">
       <h1 className="text-3xl font-bold mb-4">
@@ -74,6 +83,9 @@ const App = () => {
             </button>
             <button onClick={showCropArea}>
               <MdOutlineCropRotate />
+            </button>
+            <button onClick={handleDownload}>
+              <AiOutlineDownload />
             </button>
           </div>
         </div>
