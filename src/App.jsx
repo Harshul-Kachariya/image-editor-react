@@ -64,11 +64,11 @@ const App = () => {
 
   return (
     <div className="App px-6 justify-center items-center flex flex-col gap-5 w-screen h-screen">
-      <h1 className="text-3xl font-bold mb-4">
+      <h1 className="text-3xl font-bold ">
         Image Annotation and Cropping Demo
       </h1>
       <div>
-        <div className="relative flex flex-col mb-4">
+        <div className="relative flex flex-col">
           <div className="h-10 pl-5 w-96 text-2xl font-bold text-white space-x-6 bg-zinc-900 flex">
             <button onClick={showMarkerArea}>
               <AiOutlineForm />
@@ -81,15 +81,13 @@ const App = () => {
             </button>
           </div>
         </div>
-        <div>
-          <img
-            ref={imgRef}
-            src={editedImageData || imageUrl}
-            alt="Editable"
-            className="w-96 h-full cursor-pointer"
-            crossOrigin="anonymous"
-          />
-        </div>
+        <img
+          ref={imgRef}
+          src={editedImageData || imageUrl}
+          alt="Editable"
+          className="w-96 h-96 cursor-pointer"
+          crossOrigin="anonymous"
+        />
       </div>
     </div>
   );
