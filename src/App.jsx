@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css";
 import * as markerjs2 from "markerjs2";
 import * as cropro from "cropro";
@@ -9,23 +9,14 @@ import { MdOutlineCropRotate } from "react-icons/md";
 const App = () => {
   const imgRef = useRef(null);
 
-  const [editImage, setEditImage] = useState(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const imageUrl =
+    "https://cdn.jewelpro.app/orders/9b3ce630-5ee1-4add-9bd6-37222629ce60/4452cf74-55c4-4223-be0a-8dd0058b2918.jpg";
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (imgRef.current) {
-          imgRef.current.src = e.target.result;
-        }
-      };
-      setEditImage(file);
-      reader.readAsDataURL(file);
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.src = imageUrl;
     }
-    setIsOpen(true);
-  };
+  }, []);
 
   const showMarkerArea = () => {
     if (imgRef.current !== null) {
@@ -65,19 +56,9 @@ const App = () => {
       <h1 className="text-3xl font-bold mb-4">
         Image Annotation and Cropping Demo
       </h1>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        className={`mb-4 ${editImage ? "hidden" : "block"}`}
-      />
       <div>
-        <div className="relative flex flex-col ">
-          <div
-            className={`h-10 pl-5 w-96 text-2xl font-bold  text-white space-x-6 bg-zinc-900 flex  ${
-              editImage ? "block" : "hidden"
-            } ${isOpen ? "block" : "hidden"} `}
-          >
+        <div className="relative flex flex-col mb-4">
+          <div className="h-10 pl-5 w-96 text-2xl font-bold text-white space-x-6 bg-zinc-900 flex">
             <button onClick={showMarkerArea}>
               <AiOutlineForm />
             </button>
@@ -92,9 +73,9 @@ const App = () => {
         <div>
           <img
             ref={imgRef}
-            src={editImage}
-            alt="sample"
-            className="w-96 h-full cursor-pointer"
+            src={imageUrl}
+            alt="Editable"
+            className="w-96 h-96 cursor-pointer"
           />
         </div>
       </div>
