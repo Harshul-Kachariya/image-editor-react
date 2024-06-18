@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import * as markerjs2 from "markerjs2";
 import * as cropro from "cropro";
@@ -9,8 +9,11 @@ import { MdOutlineCropRotate } from "react-icons/md";
 const App = () => {
   const imgRef = useRef(null);
 
-  const imageUrl =
-    "https://cdn.jewelpro.app/orders/9b3ce630-5ee1-4add-9bd6-37222629ce60/4452cf74-55c4-4223-be0a-8dd0058b2918.jpg";
+  const [imageUrl, setImageUrl] = useState(
+    "https://images.pexels.com/photos/11519759/pexels-photo-11519759.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+  );
+
+  const [editedImageData, setEditedImageData] = useState(null);
 
   useEffect(() => {
     if (imgRef.current) {
@@ -19,34 +22,42 @@ const App = () => {
   }, []);
 
   const showMarkerArea = () => {
-    if (imgRef.current !== null) {
-      const markerArea = new markerjs2.MarkerArea(imgRef.current);
-      markerArea.addEventListener("render", (event) => {
-        if (imgRef.current) {
-          imgRef.current.src = event.dataUrl;
-        }
-      });
-      markerArea.show();
+    try {
+      if (imgRef.current !== null) {
+        const markerArea = new markerjs2.MarkerArea(imgRef.current);
+        markerArea.addEventListener("render", (event) => {
+          if (imgRef.current) {
+            imgRef.current.src = event.dataUrl;
+          }
+        });
+        markerArea.show();
+      }
+    } catch (e) {
+      console.warn("Warning from markerjs2:", e);
     }
   };
 
   const showCropArea = () => {
-    if (imgRef.current !== null) {
-      const cropArea = new cropro.CropArea(imgRef.current);
-      cropArea.addRenderEventListener((dataUrl) => {
-        if (imgRef.current) {
-          imgRef.current.src = dataUrl;
-        }
-      });
-      cropArea.show();
+    try {
+      if (imgRef.current !== null) {
+        const cropArea = new cropro.CropArea(imgRef.current);
+        cropArea.addRenderEventListener((dataUrl) => {
+          if (imgRef.current) {
+            imgRef.current.src = dataUrl;
+          }
+        });
+        cropArea.show();
+      }
+    } catch (e) {
+      console.warn("Warning from cropro:", e);
     }
   };
 
   const handleDownload = () => {
-    if (imgRef.current) {
+    if (editedImageData) {
       const link = document.createElement("a");
       link.download = "editedImage.png";
-      link.href = imgRef.current.src;
+      link.href = editedImageData;
       link.click();
     }
   };
@@ -73,9 +84,10 @@ const App = () => {
         <div>
           <img
             ref={imgRef}
-            src={imageUrl}
+            src={editedImageData || imageUrl}
             alt="Editable"
-            className="w-96 h-96 cursor-pointer"
+            className="w-96 h-full cursor-pointer"
+            crossOrigin="anonymous"
           />
         </div>
       </div>
