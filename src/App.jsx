@@ -78,8 +78,11 @@ const App = () => {
         "bg-gradient-to-t from-white to-pink-50 fill-current text-pink-400";
       cropArea.styles.settings.toolbarStraightenerColorsClassName =
         "text-pink-300 fill-current";
-      cropArea.styles.settings.toolbarBackgroundColor = "white";
       cropArea.styles.settings.cropFrameColor = "pink";
+      cropArea.styles.settings.cropShadeColor = "pink";
+      cropArea.styles.settings.gripFillColor = "white";
+      cropArea.styles.settings.gripColor = "gray";
+      cropArea.styles.settings.toolbarBackgroundColor = "white";
       cropArea.styles.settings.canvasBackgroundColor = "white";
 
       cropArea.addRenderEventListener((dataUrl) => {
