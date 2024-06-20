@@ -71,6 +71,7 @@ const App = () => {
       const cropArea = new cropro.CropArea(imgRef.current);
       cropArea.displayMode = "popup";
       cropArea.styles.settings.toolbarStyleColorsClassName = "bg-white";
+
       cropArea.styles.settings.toolbarButtonStyleColorsClassName =
         "bg-gradient-to-t from-white to-white hover:from-white hover:via-pink-100 hover:to-white fill-current text-pink-500";
       cropArea.styles.settings.toolbarActiveButtonStyleColorsClassName =
@@ -78,6 +79,7 @@ const App = () => {
       cropArea.styles.settings.toolbarStraightenerColorsClassName =
         "text-pink-300 fill-current";
       cropArea.styles.settings.toolbarBackgroundColor = "white";
+      cropArea.styles.settings.cropFrameColor = "pink";
       cropArea.styles.settings.canvasBackgroundColor = "white";
 
       cropArea.addRenderEventListener((dataUrl) => {
