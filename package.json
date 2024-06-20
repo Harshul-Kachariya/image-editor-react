@@ -12,6 +12,7 @@
   "dependencies": {
     "@pqina/pintura": "^8.82.4",
     "@pqina/react-pintura": "^9.0.3",
+    "antd": "^5.18.3",
     "cropro": "^1.6.0",
     "markerjs2": "^2.32.1",
     "react": "^18.2.0",
