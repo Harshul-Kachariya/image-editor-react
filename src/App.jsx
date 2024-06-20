@@ -109,7 +109,7 @@ const App = () => {
       <Modal
         open={isModalOpen}
         // onOk={handleOk}
-        // onCancel={handleCancel}
+        onCancel={handleCancel}
         footer={[
           <Button
             key="back"
