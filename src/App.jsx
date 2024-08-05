@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <EditImage
         imageUrls={
-          "https://cdn.jewelpro.app/orders/9b3ce630-5ee1-4add-9bd6-37222629ce60/4452cf74-55c4-4223-be0a-8dd0058b2918.jpg"
+          "https://images.pexels.com/photos/17354530/pexels-photo-17354530/free-photo-of-grass-growing-on-sandy-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         }
       />
     </div>
