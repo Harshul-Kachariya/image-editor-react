@@ -14,6 +14,8 @@ const EditImage = ({ imageUrls }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const imgRef = useRef(null);
 
+  console.log("imageUrl", imageUrl);
+
   // const imageUrl =
   //   "https://cdn.jewelpro.app/orders/9b3ce630-5ee1-4add-9bd6-37222629ce60/4452cf74-55c4-4223-be0a-8dd0058b2918.jpg";
 
@@ -63,6 +65,7 @@ const EditImage = ({ imageUrls }) => {
       markerArea.addEventListener("render", (event) => {
         if (imgRef.current) {
           imgRef.current.src = event.dataUrl;
+          console.log("Edited Image Data URL:", event.dataUrl);
         }
       });
       markerArea.show();
